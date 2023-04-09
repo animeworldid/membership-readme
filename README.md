@@ -4,7 +4,7 @@
 
 # @animeworldid/membership-readme
 
-**A GitHub action for updating FrutBits Indonesia staff list continuously**
+**A GitHub action for updating Anime World Indonesia membership list continuously**
 
 [![GitHub](https://img.shields.io/github/license/animeworldid/membership-readme)](https://github.com/animeworldid/membership-readme/blob/main/LICENSE)
 [![GitHub version](https://badge.fury.io/gh/animeworldid%2Fmembership-readme.svg)](https://badge.fury.io/gh/animeworldid%2Fmembership-readme)
