@@ -60,10 +60,10 @@ async function run(): Promise<any> {
 
     const highestStaff = data.staff[0];
     const [motm, supporter] = data.members;
-    const motmContent = ["# Member of the Month", ...generateContent(motm)].map(x => x.replace("<table>", "<table align=\"center\">"));
+    const motmContent = generateContent(motm).map(x => x.replace("<table>", "<table align=\"center\">"));
     const updateResult = [
         updateSection(generateContent(highestStaff), startAdminComment, endAdminComment),
-        updateSection(motmContent, startMotmComment, endMotmComment),
+        updateSection(motmContent, startMotmComment, endMotmComment, "# Member of the Month"),
         updateSection(generateContent(supporter), startSupporterComment, endSupporterComment)
     ];
 
@@ -91,7 +91,7 @@ function generateContent(data: Role & { members: MembershipPayload[] }): string[
     ];
 }
 
-function updateSection(content: string[], start: string, end: string): boolean {
+function updateSection(content: string[], start: string, end: string, ...append: string[]): boolean {
     const workingDirectory = process.env.WORKING_DIRECTORY ?? ".";
     const readmeContent = readFileSync(`${workingDirectory}/README.md`, "utf-8").split("\n");
 
@@ -111,11 +111,18 @@ function updateSection(content: string[], start: string, end: string): boolean {
     const newContentSelector = load(content.join(""));
     const existingData = readmeContent.slice(startIndex + 1, endIndex);
     const readmeContentSelector = load(existingData.join(""));
-    endIndex = readmeContent.findIndex(c => c.trim() === endAdminComment);
+    endIndex = readmeContent.findIndex(c => c.trim() === end);
 
     // Need to be updated
     if (newContentSelector("table td").length !== readmeContentSelector("table td").length) {
         core.info("Found diff data. Updating..");
+
+        // Delete old data
+        readmeContent.splice(startIndex + 1, endIndex - 1);
+        if (content.length > 2 && append.length) {
+            content.unshift(...append);
+        }
+
         readmeContent.splice(startIndex + 1, 0, ...content);
         writeFileSync(`${workingDirectory}/README.md`, readmeContent.join("\n"));
         return true;
