@@ -1,6 +1,6 @@
 {
   "name": "@animeworldid/membership-readme",
-  "version": "1.2.3",
+  "version": "1.0.0",
   "description": "A GitHub action for updating Anime World Indonesia membership list continuously",
   "keywords": [
     "typescript",
