@@ -1,0 +1,11 @@
+name: GitHub - Anime World Indonesia - Membership List Readme
+description: Updates README with the Anime World ID membership list. Fetched from https://api.animeworld.moe/v1/membership
+author: animeworldid
+
+branding:
+  color: yellow
+  icon: activity
+
+runs:
+  using: node18
+  main: dist/index.js

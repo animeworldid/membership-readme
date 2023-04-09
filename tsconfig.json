@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "Node16",
+        "moduleResolution": "node16",
+        "lib": ["ES2022"],
+        "strict": true,
+        "outDir": "dist",
+        "esModuleInterop": false,
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "forceConsistentCasingInFileNames": true,
+        "emitDecoratorMetadata": true,
+        "skipLibCheck": true,
+        "useDefineForClassFields": false, // https://github.com/microsoft/TypeScript/issues/53286#issuecomment-1500634952
+        "noEmitHelpers": true,
+        "importHelpers": true,
+        "resolveJsonModule": true,
+        "strictNullChecks": true,
+        "typeRoots": ["node_modules/@types", "src/typings"]
+    },
+    "exclude": ["node_modules", "node_modules/**/**.d.ts"],
+    "include": ["src/**/**.ts", "src/**/**.json"],
+}
